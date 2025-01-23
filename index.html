@@ -2,12 +2,12 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pantalla con Video</title>
     <style>
         body {
             font-family: Arial, sans-serif;
         }
+        /* Estilos para la ventana emergente */
         .modal {
             display: flex;
             position: fixed;
@@ -15,7 +15,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
             align-items: center;
             justify-content: center;
             z-index: 1000;
@@ -23,11 +23,12 @@
         .modal-content {
             background-color: #fff;
             padding: 20px;
-            border: 2px solid #ed7318; /* Color del marco */
-            border-radius: 10px; /* Bordes redondeados */
+            border: 2px solid #ed7318; /* Color del borde (#ed7318) */
+            border-radius: 10px;
             width: 90%;
             max-width: 400px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
         }
         .modal-header {
             text-align: center;
@@ -43,40 +44,53 @@
             padding: 10px;
             border: none;
             cursor: pointer;
-            width: 100%;
+            width: 48%;
             margin-top: 10px;
-            border-radius: 5px; /* Bordes redondeados */
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .button + .button {
+            float: right;
         }
     </style>
 </head>
 <body>
 
-<div class="modal" id="videoModal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo">
+    <!-- Contenido de tu página -->
+    <p>Este es el contenido de tu página. Puedes tener más información aquí.</p>
+
+    <!-- Ventana emergente -->
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo">
+            </div>
+            <div>
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/xQchf9JERIU?autoplay=1&mute=1" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <!-- Botones para Comprar y Cerrar -->
+            <button class="button" onclick="redirigirCompra()">Comprar</button>
+            <button class="button" onclick="closeModal()">Cerrar</button>
         </div>
-        <div>
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/xQchf9JERIU?autoplay=1&mute=1" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <button class="button" onclick="redirigirCompra()">Comprar</button>
     </div>
-</div>
 
-<script>
-    function openModal() {
-        document.getElementById('videoModal').style.display = 'flex';
-    }
+    <script>
+        // Función para mostrar la ventana emergente al cargar la página
+        window.onload = function() {
+            document.getElementById('videoModal').style.display = 'flex';
+        };
 
-    function redirigirCompra() {
-        window.location.href = "https://departamentodecuentas.company.site/products/cuenta"; // Redirigir a la página de compra
-    }
+        // Función para cerrar la ventana emergente
+        function closeModal() {
+            document.getElementById('videoModal').style.display = 'none';
+        }
 
-    document.querySelector('.open-modal-button').addEventListener('click', openModal);
-</script>
-
-<!-- Enlace para abrir la ventana emergente -->
-<button class="open-modal-button">Abrir Video</button>
+        // Función para redirigir a la página de compra
+        function redirigirCompra() {
+            window.location.href = "https://departamentodecuentas.company.site/products/cuenta"; // Redirigir a la página de compra
+        }
+    </script>
 
 </body>
 </html>
+
